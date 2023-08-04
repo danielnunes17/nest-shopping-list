@@ -21,7 +21,8 @@ export class ItemService {
   }
 
   findOne(id: string): Promise<Item> {
-    return this.itemRepository.findOne(id);
+    // eslint-disable-next-line prettier/prettier
+    return this.itemRepository.findOneBy({ id: id });
   }
 
   async update(id: string, updateItemDto: UpdateItemDto): Promise<Item> {
@@ -35,7 +36,7 @@ export class ItemService {
     return this.itemRepository.save(item);
   }
   async remove(id: string): Promise<Item> {
-    const item = await this.itemRepository.findOne(id);
+    const item = await this.findOne(id);
     return this.itemRepository.remove(item);
   }
 }
