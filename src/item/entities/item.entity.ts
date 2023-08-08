@@ -25,4 +25,11 @@ export class Item extends BaseEntity {
 
   @Column({ name: 'quantity', type: 'int' })
   quantity: number;
+
+  constructor(item?: Partial<Item>) {
+    super();
+    this.name = item?.name;
+    this.description = item?.description;
+    this.quantity = item?.quantity;
+  }
 }

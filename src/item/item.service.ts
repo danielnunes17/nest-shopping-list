@@ -21,8 +21,11 @@ export class ItemService {
   }
 
   findOne(id: string): Promise<Item> {
-    // eslint-disable-next-line prettier/prettier
-    return this.itemRepository.findOneBy({ id: id });
+    try {
+      return this.itemRepository.findOneBy({ id: id });
+    } catch (err) {
+      throw new NotFoundException(err.message);
+    }
   }
 
   async update(id: string, updateItemDto: UpdateItemDto): Promise<Item> {
